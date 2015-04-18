@@ -57,6 +57,7 @@ function viewRec(opts){
 		fn.clearData();
 		timeCache = new Date();
 		record = setInterval(_updateData,config.interval);
+		return this;
 	};
 	/**
 	Stop Record
@@ -64,6 +65,7 @@ function viewRec(opts){
 	fn.stopRecord = function(){
 		jquery.trigger('stop_record');
 		clearInterval(record);
+		return this;
 	}
 	/**
 	updating record data
@@ -94,6 +96,7 @@ function viewRec(opts){
 	};
 	fn.clearMark = function(){
 		$('.'+config.mark_classname).remove();
+		return this;
 	};
 	/**
 	Playing Record

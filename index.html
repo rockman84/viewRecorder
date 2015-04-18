@@ -1,0 +1,128 @@
+<html>
+<header>
+<title>Event</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style>
+#pointer{
+	background:url('./mouse.png');
+	height:27px;
+	width:15px;
+}
+</style>
+</header>
+<body>
+<div style="height:300px;"></div>
+<div id="status"/></div>
+<button id="record"/>Start Record</button>
+<button id="stop"/>Stop Record</button>
+<button id="play"/>Play</button>
+<button id="data"/>Data Record</button>
+<div style="height:900px;"></div>
+
+<script>
+function mydo(opts){
+	var record;
+	var play;
+	var cache = {};
+	var data = [];
+	var timeCache;
+	var index = 0;
+	var config = $.extend({
+		interval:500
+	},opts);
+	$(window).mousemove(function(e){
+		cache.pointer = {
+			x:e.pageX,
+			y:e.pageY,
+		};
+	});
+	this.startRecord = function(){
+		console.log('start recording...');
+		this.clearData();
+		timeCache = new Date();
+		record = setInterval(this._updateData,config.interval);
+	};
+	this.stopRecord = function(){
+		console.log('stop recording!');
+		clearInterval(record);
+	}
+	this._updateData = function(){
+		
+		var newTime = new Date();
+		cache.scroll = {
+			y: $(window).scrollTop(),
+			x: $(window).scrollLeft(),
+		};
+		cache.time = newTime - timeCache;
+		cache.id = index;
+		timeCache = newTime;
+		//$('#status').append(cache.toSource()+'<br />');
+		data.push({
+			pointerX:cache.pointer.x,
+			pointerY:cache.pointer.y,
+			scrollX:cache.scroll.x,
+			scrollY:cache.scroll.y,
+			time:cache.time,
+			id:cache.id
+		});
+		index++;
+		
+	};
+	this.play = function(){
+		console.log('playing...');
+		if(!$('#pointer').length){
+			$('body').after('<div id="pointer" style="position:absolute;top:0;"></div>');
+		}
+		var i = 0;
+		if(!play){
+			play = setInterval(function(){
+				if(typeof data[i] !== 'undefined'){
+					$('#pointer').animate({top:data[i].pointerY,left:data[i].pointerX},100);
+					$(window).scrollTop(data[i].scrollY);
+					$(window).scrollLeft(data[i].scrollX);
+					i++;
+				}
+				else{
+					clearInterval(play);
+					console.log('Stop Playing!');
+					i = 0;
+					play ='';
+				}
+			},data[i].time);
+		}
+		return this;
+	};
+	this.stop = function(){
+		console.log();
+		clearInterval(play);
+		return this;
+	};
+	this.getData = function(){
+		return data;
+	};
+	this.clearData = function(){
+		data = [];
+		return this;
+	}
+	return this;
+}
+
+$(function(){
+	var record = new mydo({interval:50});
+	$('#record').click(function(){
+		record.startRecord();
+	});
+	$('#data').click(function(){
+		//$('#status').html(record.getData().toSource());
+		console.log(record.getData());
+	});
+	$('#play').click(function(){
+		record.play();
+	});
+	$('#stop').click(function(){
+		record.stopRecord();
+	});
+});
+</script>
+</body>
+</html>
