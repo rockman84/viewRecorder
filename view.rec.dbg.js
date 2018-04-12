@@ -2,9 +2,7 @@
 viewRecorder
 The jQuery plugin for doing record activity user.
 (c) 2015 Hansen Wong
-License & Info: http://www.rockbeat.web.id
-	
-Powered by the Rockbeat Platform : http://www.rockbeat.web.id/product/viewrecorder
+https://github.com/rockman84/viewRecorder
 
 @overview	##Info
 @version	1.1

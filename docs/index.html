@@ -1,8 +1,8 @@
 <html>
 <header>
 	<title>View Recorder</title>
-	<script src="../jquery/jquery-1.11.2.min.js"></script>
-	<script src="view.rec.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="../view.rec.min.js"></script>
 	<style>
 	body{
 		background-color:#555;
@@ -24,7 +24,7 @@
 		display:block;
 	}
 	#vr-pointer{
-		background:url('./mouse.png');
+		background:url('../mouse.png');
 		height:27px;
 		width:15px;
 	}
@@ -37,7 +37,9 @@
 </header>
 <body>
 	<div class="warp">
-	<h1>View Recorder (jQuery Plugin)</h2>
+	<h1>View Recorder (jQuery Plugin)</h1>
+        
+        <h3>Live Demo</h3>
 	<button id="record">Start Record</button> 
 	<button id="play">Play</button>
 	<div class="status">
@@ -85,7 +87,8 @@
 	});
 	</script>
 	<div>
-		<p>Copy and paste style here</p>
+            <h3>Guide</h3>
+		<p>Copy and paste style</p>
 		<code>
 		#pointer{<br />
 			background:url('./mouse.png');<br />
