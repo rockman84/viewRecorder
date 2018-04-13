@@ -4,7 +4,7 @@ ImageLife is Jquery Plugin purpose for recording activity when user visit a webs
 ## Live Demo
 <a href="http://rockman84.github.io/viewRecorder/">http://rockman84.github.io/viewRecorder/</a>
 
-##Usage
+## Usage
 add script link inside header tag
 ```
 <script language="javascript" href="view_recorder.js"></script> 
@@ -40,7 +40,7 @@ recorder.stopRecord();
 // play record
 recorder.play(); 
 ```
-##Config
+## Config
 - interval (default: 500) milisecond
 - mark_classname (default: vr-mark)
 - pointer_idname (default: vr-pointer)
@@ -51,41 +51,41 @@ var recorder = viewRec({
 	mark_classname: 'vr-mark'
 });
 ```
-##Method
-###Start Record
+## Method
+### Start Record
 ```
 recorder.startRecord();
 ```
-###Stop Record
+### Stop Record
 ```
 recorder.stopRecord();
 ```
-###Play
+### Play
 ```
 recorder.play();
 ```
-###Stop Play
+### Stop Play
 ```
 recorder.stop();
 ```
-###Clear data record
+### Clear data record
 ```
 recorder.clearData();
 ```
-###Get data record
+### Get data record
 ```
 recorder.getData();
 ```
-###Set data record
+### Set data record
 ```
 var data = [];
 recorder.setData(data);
 ```
-###Clear Mark Click
+### Clear Mark Click
 ```
 recorder.clearMark();
 ```
-###Event
+### Event
 ```
 recorder.on('event_name',function(){
 	// event do
